@@ -1,0 +1,122 @@
+p.header {
+    font-weight: bold;
+    font-size: 100px;
+}
+
+header {
+    background-color: orange;
+}
+
+
+.title {
+    position: absolute;
+    font-size: 100px;
+    left: 8%;
+    top: 9%;
+
+}
+
+/*.userNav {*/
+/*    right: 10px;*/
+/*}*/
+
+ul.list li {
+    display: inline;
+}
+
+ul.nav li {
+    display: inline;
+}
+
+body {
+    background-color: rgb(255,195,0);
+    position: relative;
+    min-height: 100vh;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.recipesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 550px;
+    grid-column-gap: 5px;
+}
+
+.border-3 {
+    border-width:3px !important;
+}
+
+.title {
+    font-family: "Permament Marker", serif;
+}
+
+.dropBtn {
+    background: transparent;
+    color: white;
+    padding: 16px;
+    font-size: 25px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: orange;
+    font-size: 20px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: darkorange;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropBtn {background-color: darkorange;}
+
+label {
+    font-size: 20px;
+}
+
+.account {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+}
+
+.accountBtn {
+    background: transparent;
+    color: white;
+    /*padding: 16px;*/
+    font-size: 25px;
+    border: none;
+    float: right;
+}
+
+
+.account:hover .accountBtn {
+    background-color: darkorange;
+}
+
+.navMenuDropdown {
+    position: absolute;
+    left: 28%
+}

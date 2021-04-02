@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MyProject</title>
+    <link rel="icon" href="/img/chef.png">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Permanent+Marker">
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<header>
+    <nav th:fragment="navigation" class="navbar bg-nav bg-transparent border-bottom border-dark border-3 row">
+
+        <div class="nav-link" href="/">
+            <img src="/img/chef.png" width="140px" alt="Chef picture">
+            <a class="title nav-link text-white h1" href="/">Cookin'</a>
+        </div>
+
+        <th:block th:unless="${session.user == null}">
+            <div class="navMenuDropdown">
+                <div class="dropdown">
+                    <button class="dropBtn">Order</button>
+                    <div class="dropdown-content">
+                        <a href="/order/menu">Menu</a>
+                        <a href="/order/dish">Dish</a>
+                        <a href="/order/product">Products</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropBtn">Add</button>
+                    <div class="dropdown-content">
+                        <a href="/menu/add">Menu</a>
+                        <a href="/recipe/add">Recipe</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+        <ul class="navbar-nav">
+            <div class="userNav">
+                <th:block th:if="${session.user == null}">
+                    <li class="nav-item md-5 account ">
+                        <a class="nav-link text-white accountBtn" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item md-5 account ">
+                        <a class="nav-link text-white accountBtn" href="/users/register">Register</a>
+                    </li>
+                </th:block>
+                <th:block th:unless="${session.user == null}">
+
+                    <div class="nav-item account">
+                        <a class="nav-link text-white accountBtn" href="/users/logout">Logout</a>
+                    </div>
+                </th:block>
+            </div>
+
+        </ul>
+    </nav>
+</header>
+<footer th:fragment="footer" class="footer bg-blur ">
+    <div class="container-fluid text-center">
+        <div class="h5 text-white">
+            "All recipes are from supichka.com"
+        </div>
+    </div>
+</footer>
+<body>
+
+</body>
+</html>

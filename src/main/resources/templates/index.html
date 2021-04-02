@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head">
+</head>
+<body>
+<header>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<main class="p-5 align-content-center bg-blur my-main">
+    <div class="border-left border-dark">
+        <h1 class="text-dark pl-2">Welcome to</h1>
+        <h1 class="text-dark pl-2">My Project!</h1>
+    </div>
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
