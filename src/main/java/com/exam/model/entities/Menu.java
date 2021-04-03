@@ -26,11 +26,11 @@ public class Menu extends BaseEntity {
     }
 
     @OneToMany
-    public List<Recipe> getDishes() {
+    public List<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setDishes(List<Recipe> recipes) {
+    public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
 

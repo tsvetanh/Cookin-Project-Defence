@@ -1070,7 +1070,7 @@
 </ObjectGrants>
     </user>
     <table id="340" parent="2" name="menues"/>
-    <table id="341" parent="2" name="menues_dishes"/>
+    <table id="341" parent="2" name="menues_recipes"/>
     <table id="342" parent="2" name="products"/>
     <table id="343" parent="2" name="recipes"/>
     <table id="344" parent="2" name="recipes_products"/>
@@ -1100,31 +1100,31 @@
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="352" parent="341" name="dishes_id">
+    <column id="352" parent="341" name="recipes_id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="353" parent="341" name="UK_lpvuymibojde71blr38ete4ml">
-      <ColNames>dishes_id</ColNames>
+    <index id="353" parent="341" name="UK_cukg216efx94x6jw9ayjktjrl">
+      <ColNames>recipes_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="354" parent="341" name="FKtjdqqqr1u2wje5guydwoy57wc">
+    <index id="354" parent="341" name="FKn54yreu9o93lbid0iaws784c3">
       <ColNames>menu_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="355" parent="341" name="UK_lpvuymibojde71blr38ete4ml">
-      <ColNames>dishes_id</ColNames>
-      <UnderlyingIndexName>UK_lpvuymibojde71blr38ete4ml</UnderlyingIndexName>
+    <key id="355" parent="341" name="UK_cukg216efx94x6jw9ayjktjrl">
+      <ColNames>recipes_id</ColNames>
+      <UnderlyingIndexName>UK_cukg216efx94x6jw9ayjktjrl</UnderlyingIndexName>
     </key>
-    <foreign-key id="356" parent="341" name="FKtjdqqqr1u2wje5guydwoy57wc">
+    <foreign-key id="356" parent="341" name="FKn54yreu9o93lbid0iaws784c3">
       <ColNames>menu_id</ColNames>
       <RefTableName>menues</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="357" parent="341" name="FKg82hxjviqpeoduadb38ra2s8r">
-      <ColNames>dishes_id</ColNames>
+    <foreign-key id="357" parent="341" name="FKfbo5nlugr2stw0rod1uslwcem">
+      <ColNames>recipes_id</ColNames>
       <RefTableName>recipes</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
@@ -1197,81 +1197,76 @@
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="373" parent="344" name="UK_syh9xwj675invj3qn73rmdg3x">
-      <ColNames>products_id</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="374" parent="344" name="FKk6cc2wytevckvkft0d0dec4j4">
+    <index id="373" parent="344" name="FKk6cc2wytevckvkft0d0dec4j4">
       <ColNames>recipe_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="375" parent="344" name="UK_syh9xwj675invj3qn73rmdg3x">
+    <index id="374" parent="344" name="FK7eyogqa8eg63r3vurvpqrqpys">
       <ColNames>products_id</ColNames>
-      <UnderlyingIndexName>UK_syh9xwj675invj3qn73rmdg3x</UnderlyingIndexName>
-    </key>
-    <foreign-key id="376" parent="344" name="FKk6cc2wytevckvkft0d0dec4j4">
+      <Type>btree</Type>
+    </index>
+    <foreign-key id="375" parent="344" name="FKk6cc2wytevckvkft0d0dec4j4">
       <ColNames>recipe_id</ColNames>
       <RefTableName>recipes</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="377" parent="344" name="FK7eyogqa8eg63r3vurvpqrqpys">
+    <foreign-key id="376" parent="344" name="FK7eyogqa8eg63r3vurvpqrqpys">
       <ColNames>products_id</ColNames>
       <RefTableName>products</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="378" parent="345" name="id">
+    <column id="377" parent="345" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="379" parent="345" name="email">
+    <column id="378" parent="345" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="380" parent="345" name="password">
+    <column id="379" parent="345" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <column id="381" parent="345" name="username">
+    <column id="380" parent="345" name="username">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
     </column>
-    <key id="382" parent="345" name="PRIMARY">
+    <key id="381" parent="345" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="383" parent="346" name="user_id">
+    <column id="382" parent="346" name="user_id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="384" parent="346" name="recipes_id">
+    <column id="383" parent="346" name="recipes_id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="385" parent="346" name="UK_dom9g1p5e7813ils0r0dre3s0">
+    <index id="384" parent="346" name="UK_dom9g1p5e7813ils0r0dre3s0">
       <ColNames>recipes_id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="386" parent="346" name="FK6st0jnhyq1lmru9olv90i4mv9">
+    <index id="385" parent="346" name="FK6st0jnhyq1lmru9olv90i4mv9">
       <ColNames>user_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="387" parent="346" name="UK_dom9g1p5e7813ils0r0dre3s0">
+    <key id="386" parent="346" name="UK_dom9g1p5e7813ils0r0dre3s0">
       <ColNames>recipes_id</ColNames>
       <UnderlyingIndexName>UK_dom9g1p5e7813ils0r0dre3s0</UnderlyingIndexName>
     </key>
-    <foreign-key id="388" parent="346" name="FK6st0jnhyq1lmru9olv90i4mv9">
+    <foreign-key id="387" parent="346" name="FK6st0jnhyq1lmru9olv90i4mv9">
       <ColNames>user_id</ColNames>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="389" parent="346" name="FK8vyvk9vihj32cq77phf2npdvi">
+    <foreign-key id="388" parent="346" name="FK8vyvk9vihj32cq77phf2npdvi">
       <ColNames>recipes_id</ColNames>
       <RefTableName>recipes</RefTableName>
       <RefColNames>id</RefColNames>
