@@ -6,11 +6,13 @@ import com.exam.model.entities.User;
 import com.exam.model.service.RecipeServiceModel;
 import com.exam.service.ProductService;
 import com.exam.service.RecipeService;
+import com.exam.view.RecipeViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -79,4 +81,17 @@ public class RecipeController {
         return "redirect:/";
 
     }
+
+
+
+    @GetMapping("/details{id}")
+    public String details(@PathVariable("id") Long id, Model model){
+
+        RecipeViewModel recipeViewModel = recipeService.findById(id);
+
+        model.addAttribute("recipe", recipeViewModel);
+
+        return "details/recipe";
+    }
+
 }

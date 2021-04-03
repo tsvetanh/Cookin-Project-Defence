@@ -5,11 +5,12 @@ import com.exam.model.service.RecipeServiceModel;
 import com.exam.view.RecipeViewModel;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RecipeService {
     void createRecipe(RecipeServiceModel serviceModel);
 
-//    RecipeViewModel findById(Long id);
+    RecipeViewModel findById(Long id);
 
     Recipe findEntityById(Long albumId);
 

@@ -120,3 +120,8 @@ label {
     position: absolute;
     left: 28%
 }
+
+
+a:link {
+    text-decoration: none;
+}

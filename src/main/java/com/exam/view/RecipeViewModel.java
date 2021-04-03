@@ -3,12 +3,21 @@ package com.exam.view;
 import com.exam.model.entities.emuns.Difficulty;
 
 public class RecipeViewModel {
+    private Long id;
     private String name;
     private String imgUrl;
     private Difficulty difficulty;
     private String addedBy;
 
     public RecipeViewModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

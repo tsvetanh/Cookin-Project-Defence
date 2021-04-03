@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
@@ -48,6 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
         recipes.forEach(recipe -> {
             RecipeViewModel recipeViewModel = new RecipeViewModel();
             modelMapper.map(recipe, recipeViewModel);
+            recipeViewModel.setId(recipe.getId());
             recipeViewModel.setName(recipe.getName());
             recipeViewModel.setImgUrl(recipe.getImgUrl());
             recipeViewModel.setDifficulty(recipe.getDifficulty());
@@ -56,11 +58,26 @@ public class RecipeServiceImpl implements RecipeService {
             viewModels.add(recipeViewModel);
         });
 
+
         return viewModels;
     }
 
     @Override
-    public Recipe findEntityById(Long albumId) {
+    public Recipe findEntityById(Long recipeId) {
         return null;
     }
+
+
+    @Override
+    public RecipeViewModel findById(Long recipeId) {
+        return recipeRepository
+                .findById(recipeId)
+                .map(recipeEntity -> {
+                    return modelMapper
+                            .map(recipeEntity, RecipeViewModel.class);
+                })
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }
+
+

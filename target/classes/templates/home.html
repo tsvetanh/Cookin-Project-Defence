@@ -5,13 +5,15 @@
     <nav th:replace="fragments/fragment :: navigation"></nav>
 </header>
 <body>
-    <div >
-        <ul class="recipesList align-content-center">
-            <li class="m-5" th:each="recipe : ${recipes}" th:object="${recipe}">
-                <img th:src="*{imgUrl}" alt="Recipe image" width="500" height="350">
-                <h5 th:text="*{name}"></h5>
-                <h5 th:text="*{difficulty}"></h5>
-                <h5 th:text="*{addedBy}"></h5>
+    <div>
+        <ul class="recipesList ">
+            <li class="m-5 page-link "   th:each="recipe : ${recipes}" th:object="${recipe}">
+                <a th:href="@{/recipe/details{id}(id = *{id})}">
+                    <img th:src="*{imgUrl}" alt="Recipe image"  width="500" height="350">
+                    <h5 class="text-dark" th:text="*{name}"></h5>
+                    <h5 class="text-dark" th:text="*{difficulty}"></h5>
+                    <h5 class="text-dark" th:text="*{addedBy}"></h5>
+                </a>
             </li>
         </ul>
     </div>
