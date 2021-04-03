@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/fragment :: head"></head>
+<head th:replace="fragments/fragment :: head">
+    <script src="productsSelect.js"></script>
+</head>
 <body>
 <header>
     <nav th:replace="fragments/fragment :: navigation"></nav>
@@ -33,6 +35,13 @@
                         <option value="EASY">Easy</option>
                         <option value="MEDIUM">Medium</option>
                         <option value="HARD">Hard</option>
+                    </select>
+                </div>
+
+                <div class="py-2">
+                    <label for="products" class="text-right">Products: </label>
+                    <select name="products" id="products" >
+                        <option th:each="product : ${products}" th:object="${product}" th:value="*{name}" th:text="*{name}"></option>
                     </select>
                 </div>
 

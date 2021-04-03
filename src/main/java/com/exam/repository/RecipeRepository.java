@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
 
+    boolean findByName(String name);
 }

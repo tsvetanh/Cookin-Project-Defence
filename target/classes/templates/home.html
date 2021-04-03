@@ -5,9 +5,9 @@
     <nav th:replace="fragments/fragment :: navigation"></nav>
 </header>
 <body>
-    <div class="recipesList align-content-center">
-        <ul th:each="recipe : ${recipes}" th:object="${recipe}">
-            <li class="m-5">
+    <div >
+        <ul class="recipesList align-content-center">
+            <li class="m-5" th:each="recipe : ${recipes}" th:object="${recipe}">
                 <img th:src="*{imgUrl}" alt="Recipe image" width="500" height="350">
                 <h5 th:text="*{name}"></h5>
                 <h5 th:text="*{difficulty}"></h5>
