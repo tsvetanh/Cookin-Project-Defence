@@ -26,7 +26,6 @@ public class ProductServiceImpl implements ProductService {
         List<ProductViewModel> viewModels = new ArrayList<>();
 
         List<Product> products = productRepository.findAll();
-        System.out.println(products);
 
         products.forEach(product -> {
             ProductViewModel productViewModel = new ProductViewModel();
