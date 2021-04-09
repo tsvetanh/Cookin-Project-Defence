@@ -16,9 +16,6 @@ header {
 
 }
 
-/*.userNav {*/
-/*    right: 10px;*/
-/*}*/
 
 ul.list li {
     display: inline;
@@ -124,4 +121,15 @@ label {
 
 a:link {
     text-decoration: none;
+}
+
+.selectedProducts {
+    /*background-color: white;*/
+
+    -webkit-column-count: 3;
+    -moz-column-count: 2;
+    column-count: 4;
+    /*columns: 2;*/
+    /*-webkit-columns: 2;*/
+    /*-moz-columns: 2;*/
 }

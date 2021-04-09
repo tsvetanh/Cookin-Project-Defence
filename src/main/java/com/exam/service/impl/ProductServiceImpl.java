@@ -36,4 +36,9 @@ public class ProductServiceImpl implements ProductService {
 
         return viewModels;
     }
+
+    @Override
+    public Product getProductByName(String name) {
+        return productRepository.getByName(name);
+    }
 }

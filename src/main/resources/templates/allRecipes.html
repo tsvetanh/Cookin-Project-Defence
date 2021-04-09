@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<header>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<body>
+    <div>
+        <ul class="recipesList ">
+            <li class="m-5 page-link "  th:each="recipe : ${recipes}" th:object="${recipe}">
+                <a th:href="@{/recipe/details{id}(id = *{id})}">
+                    <img th:src="*{imgUrl}" alt="Recipe image"  width="500" height="350">
+                    <h5 class="text-dark" th:text="*{name}"></h5>
+                    <label class="float-left text-dark h5">Difficulty:&nbsp;</label> <h5 class="h5 text-dark" th:text="*{difficulty}"></h5>
+                    <label class="float-left text-dark h5">Added by:&nbsp;</label> <h5 class="h5 text-dark" th:text="*{addedBy}"></h5>
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</html>

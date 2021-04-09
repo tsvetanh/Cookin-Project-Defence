@@ -1,6 +1,5 @@
 package com.exam.web;
 
-import com.exam.repository.RecipeRepository;
 import com.exam.service.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class HomeController {
         }
 
 //        System.out.println(recipeService.getAllRecipes());
-        model.addAttribute("recipes", recipeService.getAllRecipes());
+        model.addAttribute("recipes", recipeService.getTop3Recipes());
 
         return "home";
     }

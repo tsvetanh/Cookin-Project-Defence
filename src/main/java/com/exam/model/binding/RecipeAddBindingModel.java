@@ -1,15 +1,13 @@
 package com.exam.model.binding;
 
-import com.exam.model.entities.Product;
 import com.exam.model.entities.emuns.Difficulty;
 
-import java.util.List;
 
 public class RecipeAddBindingModel {
     private String name;
     private String imgUrl;
     private Difficulty difficulty;
-//    private List<Product> products;
+    private String products;
     private String description;
 
     public RecipeAddBindingModel() {
@@ -39,13 +37,13 @@ public class RecipeAddBindingModel {
         this.difficulty = difficulty;
     }
 
-//    public List<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(List<Product> products) {
-//        this.products = products;
-//    }
+    public String getProducts() {
+        return products;
+    }
+
+    public void setProducts(String products) {
+        this.products = products;
+    }
 
     public String getDescription() {
         return description;

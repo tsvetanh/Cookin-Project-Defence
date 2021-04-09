@@ -1,7 +1,10 @@
 package com.exam.view;
 
+import java.math.BigDecimal;
+
 public class ProductViewModel {
     private String name;
+    private BigDecimal price;
 
     public ProductViewModel() {
     }
@@ -12,5 +15,13 @@ public class ProductViewModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

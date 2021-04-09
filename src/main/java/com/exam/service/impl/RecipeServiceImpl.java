@@ -44,11 +44,10 @@ public class RecipeServiceImpl implements RecipeService {
         List<RecipeViewModel> viewModels = new ArrayList<>();
 
         List<Recipe> recipes = recipeRepository.findAll();
-        System.out.println(recipes);
 
         recipes.forEach(recipe -> {
             RecipeViewModel recipeViewModel = new RecipeViewModel();
-            modelMapper.map(recipe, recipeViewModel);
+            modelMapper.map(recipe, RecipeViewModel.class);
             recipeViewModel.setId(recipe.getId());
             recipeViewModel.setName(recipe.getName());
             recipeViewModel.setImgUrl(recipe.getImgUrl());
@@ -61,6 +60,48 @@ public class RecipeServiceImpl implements RecipeService {
 
         return viewModels;
     }
+
+    @Override
+    public RecipeViewModel getRecipeByName(String name) {
+
+        Recipe recipe = recipeRepository.getByName(name);
+
+
+        List<Recipe> recipes = recipeRepository.findAll();
+
+        RecipeViewModel recipeViewModel = new RecipeViewModel();
+
+        modelMapper.map(recipe, recipeViewModel);
+
+        return recipeViewModel;
+    }
+
+    @Override
+    public Recipe getRecipeEntityByName(String name) {
+        return recipeRepository.getByName(name);
+    }
+
+    @Override
+    public List<RecipeViewModel> getTop3Recipes() {
+        List<Recipe> recipes =  recipeRepository.getFirstThreeRecipes();
+
+        List<RecipeViewModel> viewModels = new ArrayList<>();
+
+        recipes.forEach(recipe -> {
+            RecipeViewModel recipeViewModel = new RecipeViewModel();
+            modelMapper.map(recipe, RecipeViewModel.class);
+            recipeViewModel.setId(recipe.getId());
+            recipeViewModel.setName(recipe.getName());
+            recipeViewModel.setImgUrl(recipe.getImgUrl());
+            recipeViewModel.setDifficulty(recipe.getDifficulty());
+            recipeViewModel.setAddedBy(recipe.getAddedBy().getUsername());
+
+            viewModels.add(recipeViewModel);
+        });
+
+        return viewModels;
+    }
+
 
     @Override
     public Recipe findEntityById(Long recipeId) {

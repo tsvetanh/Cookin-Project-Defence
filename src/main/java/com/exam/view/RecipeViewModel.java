@@ -1,12 +1,17 @@
 package com.exam.view;
 
+import com.exam.model.entities.Product;
 import com.exam.model.entities.emuns.Difficulty;
+
+import java.util.List;
 
 public class RecipeViewModel {
     private Long id;
     private String name;
     private String imgUrl;
     private Difficulty difficulty;
+    private List<Product> products;
+    private String description;
     private String addedBy;
 
     public RecipeViewModel() {
@@ -42,6 +47,22 @@ public class RecipeViewModel {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddedBy() {

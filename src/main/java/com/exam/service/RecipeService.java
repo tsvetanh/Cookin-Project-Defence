@@ -16,4 +16,9 @@ public interface RecipeService {
 
     List<RecipeViewModel> getAllRecipes();
 
+    RecipeViewModel getRecipeByName(String name);
+
+    Recipe getRecipeEntityByName(String name);
+
+    List<RecipeViewModel> getTop3Recipes();
 }

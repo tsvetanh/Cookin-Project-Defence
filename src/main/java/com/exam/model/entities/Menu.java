@@ -1,9 +1,6 @@
 package com.exam.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -25,7 +22,7 @@ public class Menu extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     public List<Recipe> getRecipes() {
         return recipes;
     }

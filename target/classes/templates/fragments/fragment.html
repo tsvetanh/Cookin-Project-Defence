@@ -18,14 +18,24 @@
             <a class="title nav-link text-white h1" href="/">Cookin'</a>
         </div>
 
-        <th:block th:unless="${session.user == null}">
-            <div class="navMenuDropdown">
+
+        <div class="navMenuDropdown">
+            <div class="dropdown">
+                <a class="dropBtn text-white" href="/menu/all" type="button">Menus</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropBtn text-white" href="/recipe/all" type="button">Recipes</a>
+            </div>
+            <div class="dropdown">
+                <a class="dropBtn text-white" href="/product/all" type="button">Products</a>
+            </div>
+            <th:block th:unless="${session.user == null}">
                 <div class="dropdown">
                     <button class="dropBtn">Order</button>
                     <div class="dropdown-content">
-                        <a href="/order/menu">Menu</a>
-                        <a href="/order/dish">Dish</a>
-                        <a href="/order/product">Products</a>
+                        <a href="/menu/order">Menu</a>
+                        <a href="/recipe/order">Dish</a>
+                        <a href="/product/order">Products</a>
                     </div>
                 </div>
                 <div class="dropdown">
@@ -35,8 +45,9 @@
                         <a href="/recipe/add">Recipe</a>
                     </div>
                 </div>
-            </div>
-        </th:block>
+            </th:block>
+        </div>
+
         <ul class="navbar-nav">
             <div class="userNav">
                 <th:block th:if="${session.user == null}">

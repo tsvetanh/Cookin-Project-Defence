@@ -45,7 +45,7 @@ public class Recipe extends BaseEntity {
         this.difficulty = difficulty;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     public List<Product> getProducts() {
         return products;
     }
