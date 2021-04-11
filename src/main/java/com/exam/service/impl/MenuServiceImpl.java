@@ -6,6 +6,7 @@ import com.exam.repository.MenuRepository;
 import com.exam.repository.UserRepository;
 import com.exam.service.MenuService;
 import com.exam.view.MenuViewModel;
+import com.exam.view.RecipeViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -32,20 +33,33 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
+    public MenuViewModel findById(Long id) {
+        return menuRepository
+                .findById(id)
+                .map(menu -> {
+                    MenuViewModel view = modelMapper
+                            .map(menu, MenuViewModel.class);
+                    return view;
+
+                })
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
     public List<MenuViewModel> getAllMenus() {
         List<Menu> menus = menuRepository.findAll();
 
         List<MenuViewModel> viewModels = new ArrayList<>();
 
         menus.forEach(menu -> {
-            MenuViewModel menuViewModel = new MenuViewModel();
-//            modelMapper.map(menu, MenuViewModel.class);
-            menuViewModel.setName(menu.getName());
-            menuViewModel.setRecipes(menu.getRecipes());
-            menuViewModel.setDescription(menu.getDescription());
-
+            MenuViewModel menuViewModel = modelMapper.map(menu, MenuViewModel.class);
             viewModels.add(menuViewModel);
         });
         return viewModels;
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        menuRepository.deleteById(id);
     }
 }

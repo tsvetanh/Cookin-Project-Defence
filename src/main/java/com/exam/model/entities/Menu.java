@@ -1,13 +1,13 @@
 package com.exam.model.entities;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name = "menues")
+@Table(name = "menus")
 public class Menu extends BaseEntity {
     private String name;
-    private List<Recipe> recipes;
+    private Set<Recipe> recipes;
     private String description;
 
     public Menu() {
@@ -22,12 +22,12 @@ public class Menu extends BaseEntity {
         this.name = name;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    public List<Recipe> getRecipes() {
+    @ManyToMany(fetch = FetchType.EAGER)
+    public Set<Recipe> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(List<Recipe> recipes) {
+    public void setRecipes(Set<Recipe> recipes) {
         this.recipes = recipes;
     }
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<header>
+    <nav th:replace="fragments/fragment :: navigation"></nav>
+</header>
+<body>
+
+<div th:if="${menus.size()} == 0">
+    <h1 class="text-white m-5">No menus to show</h1>
+</div>
+<div>
+    <ul class="recipesMenusList ">
+        <li class="m-5 page-link "   th:each="menu : ${menus}" th:object="${menu}">
+            <a th:href="@{/menu/details{id}(id = *{id})}">
+                <img th:src="${menu.getRecipes().get(0).getImgUrl()}" alt="Recipe image"  width="500" height="350">
+                <h5 class="text-dark" th:text="*{name}"></h5>
+
+            </a>
+        </li>
+    </ul>
+</div>
+</body>
+<footer th:replace="fragments/fragment :: footer"></footer>
+</html>

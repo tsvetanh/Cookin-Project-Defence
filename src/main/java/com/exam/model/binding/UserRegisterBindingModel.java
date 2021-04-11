@@ -10,6 +10,7 @@ public class UserRegisterBindingModel {
     private String password;
     private String confirmPassword;
     private String email;
+    private boolean admin;
 
     public UserRegisterBindingModel() {
     }
@@ -51,5 +52,13 @@ public class UserRegisterBindingModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 }

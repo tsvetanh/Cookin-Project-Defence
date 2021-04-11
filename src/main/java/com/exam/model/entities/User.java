@@ -1,9 +1,11 @@
 package com.exam.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.exam.model.entities.emuns.Role;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,11 +16,12 @@ public class User extends BaseEntity{
     private String email;
     private String password;
     private List<Recipe> recipes;
+    private List<UserRole> roles = new ArrayList<>();
 
     public User() {
     }
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     public String getUsername() {
         return username;
     }
@@ -53,4 +56,20 @@ public class User extends BaseEntity{
     public void setRecipes(List<Recipe> recipes) {
         this.recipes = recipes;
     }
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany
+    public List<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole(UserRole userRole) {
+        this.roles.add(userRole);
+    }
+
+
 }

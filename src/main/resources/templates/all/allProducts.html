@@ -6,12 +6,12 @@
 </header>
 <body>
 <div>
-    <ul class="recipesList ">
-        <li class="m-5 page-link "   th:each="menu : ${menus}" th:object="${menu}">
-            <a th:href="@{/menu/details{id}(id = *{id})}">
-                <img th:src="${imgUrl}" alt="Recipe image"  width="500" height="350">
+    <ul class="recipesMenusList ">
+        <li class="m-5 page-link "   th:each="product : ${products}" th:object="${product}">
+            <a th:href="@{/product/details{id}(id = *{id})}">
+                <img th:src="*{imgUrl}" alt="Products image"  width="500" height="350">
                 <h5 class="text-dark" th:text="*{name}"></h5>
-
+                <a class="text-dark" th:text="*{price}"></a>
             </a>
         </li>
     </ul>

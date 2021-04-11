@@ -2,6 +2,7 @@ package com.exam.service.impl;
 
 import com.exam.model.entities.Recipe;
 import com.exam.model.entities.User;
+import com.exam.model.service.ProductServiceModel;
 import com.exam.model.service.RecipeServiceModel;
 import com.exam.repository.RecipeRepository;
 import com.exam.repository.UserRepository;
@@ -9,6 +10,8 @@ import com.exam.service.RecipeService;
 import com.exam.view.RecipeViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +31,13 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void createRecipe(RecipeServiceModel serviceModel) {
-        Recipe recipe = modelMapper.map(serviceModel, Recipe.class);
+    public void createRecipe(RecipeServiceModel recipeServiceModel) throws IllegalArgumentException {
+        Recipe recipe = modelMapper.map(recipeServiceModel, Recipe.class);
         User creator = userRepository.
-                findByUsername(serviceModel.getAddedBy().getUsername()).
-                orElseThrow(() -> new IllegalArgumentException("Creator " + serviceModel.getAddedBy().getUsername() + " could not be found"));
+                findByUsername(recipeServiceModel.getAddedBy()).
+                orElseThrow(() -> new IllegalArgumentException("Creator " + recipeServiceModel.getAddedBy() + " could not be found"));
 
-        recipe.setAddedBy(creator);
+        recipe.setAddedBy(recipeServiceModel.getAddedBy());
 
         recipeRepository.save(recipe);
     }
@@ -46,14 +49,7 @@ public class RecipeServiceImpl implements RecipeService {
         List<Recipe> recipes = recipeRepository.findAll();
 
         recipes.forEach(recipe -> {
-            RecipeViewModel recipeViewModel = new RecipeViewModel();
-            modelMapper.map(recipe, RecipeViewModel.class);
-            recipeViewModel.setId(recipe.getId());
-            recipeViewModel.setName(recipe.getName());
-            recipeViewModel.setImgUrl(recipe.getImgUrl());
-            recipeViewModel.setDifficulty(recipe.getDifficulty());
-            recipeViewModel.setAddedBy(recipe.getAddedBy().getUsername());
-
+            RecipeViewModel recipeViewModel = modelMapper.map(recipe, RecipeViewModel.class);
             viewModels.add(recipeViewModel);
         });
 
@@ -88,19 +84,18 @@ public class RecipeServiceImpl implements RecipeService {
         List<RecipeViewModel> viewModels = new ArrayList<>();
 
         recipes.forEach(recipe -> {
-            RecipeViewModel recipeViewModel = new RecipeViewModel();
-            modelMapper.map(recipe, RecipeViewModel.class);
-            recipeViewModel.setId(recipe.getId());
-            recipeViewModel.setName(recipe.getName());
-            recipeViewModel.setImgUrl(recipe.getImgUrl());
-            recipeViewModel.setDifficulty(recipe.getDifficulty());
-            recipeViewModel.setAddedBy(recipe.getAddedBy().getUsername());
-
+            RecipeViewModel recipeViewModel = modelMapper.map(recipe, RecipeViewModel.class);
             viewModels.add(recipeViewModel);
         });
 
         return viewModels;
     }
+
+    @Override
+    public void updateRecipe(RecipeServiceModel r) {
+            recipeRepository.updateRecipe(r.getId(), r.getName(), r.getImgUrl(), r.getDifficulty(), r.getDescription());
+    }
+
 
 
     @Override
@@ -118,6 +113,11 @@ public class RecipeServiceImpl implements RecipeService {
                             .map(recipeEntity, RecipeViewModel.class);
                 })
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        recipeRepository.deleteById(id);
     }
 }
 

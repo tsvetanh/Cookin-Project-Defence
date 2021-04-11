@@ -21,4 +21,8 @@ public interface RecipeService {
     Recipe getRecipeEntityByName(String name);
 
     List<RecipeViewModel> getTop3Recipes();
+
+    void updateRecipe(RecipeServiceModel recipeServiceModel);
+
+    void deleteById(Long id);
 }

@@ -1,11 +1,17 @@
 package com.exam.model.service;
 
+import com.exam.model.entities.UserRole;
+import com.exam.model.entities.emuns.Role;
+
+import java.util.List;
+
 public class UserServiceModel {
 
     private String id;
     private String username;
     private String password;
     private String email;
+    private List<UserRole> roles;
 
     public UserServiceModel() {
     }
@@ -40,5 +46,22 @@ public class UserServiceModel {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<UserRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<UserRole> roles) {
+        this.roles = roles;
+    }
+
+    public boolean hasRole(String roleName) {
+        for (UserRole role : this.roles) {
+            if (role.getRole().equals(Role.valueOf(roleName))) {
+                return true;
+            }
+        }
+        return false;
     }
 }

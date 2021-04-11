@@ -13,7 +13,7 @@ public class Recipe extends BaseEntity {
     private Difficulty difficulty;
     private List<Product> products;
     private String description;
-    private User addedBy;
+    private String addedBy;
 
     public Recipe() {
     }
@@ -63,12 +63,11 @@ public class Recipe extends BaseEntity {
         this.description = description;
     }
 
-    @OneToOne
-    public User getAddedBy() {
+    public String getAddedBy() {
         return addedBy;
     }
 
-    public void setAddedBy(User addedBy) {
+    public void setAddedBy(String addedBy) {
         this.addedBy = addedBy;
     }
 }

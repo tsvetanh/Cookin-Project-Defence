@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/fragment :: head"></head>
+
 <body>
 
+<header th:replace="fragments/fragment :: navigation"></header>
+
+<main class="p-5 align-content-center bg-blur">
+    <div class="justify-content-center">
+        <h1 class="text-light border-left border-white pl-4" th:text="${product.name}"></h1>
+    </div>
+    <div th:object="${product}" class="row rounded mb-5 mt-3">
+        <div  class="col-md-6 bg-blur text-light rounded ">
+            <img th:src="*{imgUrl}" alt="Recipe image"  width="500" height="350">
+            <dl class="row pt-3">
+                <dt class="col-sm-3">Price</dt>
+                <dd class="col-sm-9" th:text="*{price}"></dd>
+            </dl>
+
+            <div th:unless="${#vars.session.user} == null" >
+                <div class="btn btn-primary btn-block w-25" th:if="${#vars.session.user.hasRole('ADMIN')}">
+                    <a th:href="@{/product/edit{id}(id = *{id})}" class="text-white">Edit</a>
+                </div>
+                <div class="btn btn-primary btn-block w-25" th:if="${#vars.session.user.hasRole('ADMIN')}">
+                    <a th:href="@{/product/delete{id}(id = *{id})}" class="text-white">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/fragment :: footer"></footer>
 </body>
 </html>

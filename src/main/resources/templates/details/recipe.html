@@ -13,69 +13,32 @@
         <h1 class="text-light border-left border-white pl-4" th:text="${recipe.name}"></h1>
     </div>
     <div th:object="${recipe}" class="row rounded mb-5 mt-3">
-        <div  class="col-md-6 bg-blur text-light rounded ">
-            <img th:src="*{imgUrl}" alt="Recipe image">
-            <ul>
-                <li th:each="product : ${products}" th:object="${product}">
-                    <a th:text="*{name}"></a>
-                </li>
-            </ul>
-            <dl class="row pt-3">
-                <dt class="col-sm-3">Description</dt>
-                <dd class="col-sm-9" th:text="*{description}">Description</dd>
-            </dl>
-
+        <div class="col-md-6 bg-blur text-light rounded ">
+            <div class="d-flex">
+                <img th:src="*{imgUrl}" alt="Recipe image" width="500" height="350">
+                <div class="p-2 m-2  bg-light">
+                    <label class="label text-dark" for="products">Products:</label>
+                    <ul id="products">
+                        <li th:each="product : ${products}" th:object="${product}">
+                            <a class="text-dark" th:text="*{name}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row pt-3">
+                <dt class="col-sm-3 descriptionTitle">Description</dt>
+                <dd class="col-sm-12 description" th:text="*{description}">Description</dd>
+            </div>
+            <div th:unless="${#vars.session.user} == null">
+                <div class="btn btn-primary btn-block w-25" th:if="${#vars.session.user.getUsername()} == *{getAddedBy()}">
+                    <a th:href="@{/recipe/edit{id}(id = *{id})}" class="text-white">Edit</a>
+                </div>
+                <div class="btn btn-primary btn-block w-25" th:if="${#vars.session.user.getUsername()} == *{getAddedBy()}">
+                    <a th:href="@{/recipe/delete{id}(id = *{id})}" class="text-white">Delete</a>
+                </div>
+            </div>
         </div>
 
-    </div>
-<!--    <div class="row rounded mb-5 mt-3">-->
-<!--        <div class="container mt-5">-->
-<!--            <div class="d-flex justify-content-center row ">-->
-<!--                <div class="col-md-8">-->
-<!--                    <div class="d-flex flex-column comment-section ">-->
-<!--                        <div class="bg-blur text-light p-2 rounded">-->
-<!--                            <div class="d-flex flex-row user-info">-->
-<!--                                <img class="rounded-circle"-->
-<!--                                     width="40">-->
-<!--                                <div class="d-flex flex-column justify-content-start ml-2">-->
-<!--                                    <span class="d-block font-weight-bold name"></span>-->
-<!--                                    <span> Comment added on date and time </span></div>-->
-<!--                            </div>-->
-<!--                            <div class="mt-2">-->
-<!--                                <p class="comment-text">Comment text</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="bg-blur text-light rounded ">-->
-<!--                            <div class="d-flex flex-row fs-12 float-right">-->
-<!--                                <div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span-->
-<!--                                        class="ml-1">Like</span></div>-->
-<!--                                <div class="like p-2 cursor"><i class="fa fa-commenting-o"></i><span class="ml-1">Comment</span>-->
-<!--                                </div>-->
-<!--                                <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="bg-blur text-light p-2 rounded">-->
-<!--                            <form action="/comments/add" method="POST">-->
-<!--                                <div class="d-flex flex-row align-items-start">-->
-<!--                                    <img class="rounded-circle"-->
-<!--                                         src="https://i.imgur.com/RpzrMR2.jpg"-->
-<!--                                         width="40"><textarea name="text"-->
-<!--                                                              class="form-control ml-1 shadow-none textarea"></textarea>-->
-<!--                                </div>-->
-<!--                                <input type="hidden" name="albumId" >-->
-<!--                                <div class="mt-2 text-right">-->
-<!--                                    <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment-->
-<!--                                    </button>-->
-<!--                                    <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel-->
-<!--                                    </button>-->
-<!--                                </div>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </main>
 <footer th:replace="fragments/fragment :: footer"></footer>

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "products")
 public class Product extends BaseEntity{
     private String name;
+    private String imgUrl;
     private BigDecimal price;
 
     public Product() {
@@ -21,6 +22,15 @@ public class Product extends BaseEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Column(name = "img_url")
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Column(name = "price")

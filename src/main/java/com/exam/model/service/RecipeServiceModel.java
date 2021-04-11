@@ -1,20 +1,28 @@
 package com.exam.model.service;
 
 import com.exam.model.entities.Product;
-import com.exam.model.entities.User;
 import com.exam.model.entities.emuns.Difficulty;
 
 import java.util.List;
 
 public class RecipeServiceModel {
+    private Long id;
     private String name;
     private String imgUrl;
     private Difficulty difficulty;
     private List<Product> products;
     private String description;
-    private User addedBy;
+    private String addedBy;
 
     public RecipeServiceModel() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,11 +65,11 @@ public class RecipeServiceModel {
         this.description = description;
     }
 
-    public User getAddedBy() {
+    public String getAddedBy() {
         return addedBy;
     }
 
-    public void setAddedBy(User addedBy) {
+    public void setAddedBy(String addedBy) {
         this.addedBy = addedBy;
     }
 }

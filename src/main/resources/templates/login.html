@@ -9,19 +9,20 @@
     <h1 class="text-light border-bottom mb-5 text-center">Login</h1>
     <div class="d-flex justify-content-center">
         <div class="row g-3 align-items-center">
-            <form th:object="${userLoginBindingModel}" action="/users/login" method="POST">
-                <h5 th:if="${notFound}" class="text-center text-light form-text bg-danger rounded">User doesn't exists</h5>
+            <form action="/users/login" th:object="${userLoginBindingModel}" method="POST">
                 <div>
+                    <th:block th:each=" e : ${#fields.errors()}" th:object="${e}">
+                        <small th:text="${e}" class="text-danger">Error message</small>
+                        <br/>
+                    </th:block>
+                    <h6 th:if="${notFound}" class="text-danger">Incorrect username or password!</h6>
+
                     <div class="col-auto">
                         <label for="inputUsername" class="col-form-label text-light">Username</label>
                     </div>
                     <div class="col-auto">
-                        <input th:field="*{username}" th:errorclass="bg-danger"  type="text" name="username" id="inputUsername" class="form-control"
-                               aria-describedby="usernameHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" id="usernameError" class="text-light form-text bg-danger rounded">Length must between 3
-                            and 20 characters</small>
+                        <input type="text" name="username" th:value="*{username}" required minlength="5" maxlength="20" id="inputUsername"
+                               class="form-control" aria-describedby="usernameHelpInline">
                     </div>
                 </div>
                 <div>
@@ -29,12 +30,8 @@
                         <label for="inputPassword" class="col-form-label text-light">Password</label>
                     </div>
                     <div class="col-auto">
-                        <input th:field="*{password}" th:errorclass="bg-danger" type="password" name="password" id="inputPassword" class="form-control"
-                               aria-describedby="passwordHelpInline">
-                    </div>
-                    <div class="col-auto">
-                        <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" id="passwordError" class="text-light form-text bg-danger rounded">Length must between 5
-                            and 20 characters</small>
+                        <input type="password" name="password" th:value="*{password}" required minlength="5" maxlength="20"
+                               id="inputPassword" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-2">

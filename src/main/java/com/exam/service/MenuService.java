@@ -10,5 +10,9 @@ public interface MenuService {
 
     void createMenu(MenuServiceModel menuServiceModel);
 
+    MenuViewModel findById(Long id);
+
     List<MenuViewModel> getAllMenus();
+
+    void deleteById(Long id);
 }

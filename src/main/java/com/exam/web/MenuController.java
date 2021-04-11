@@ -1,12 +1,8 @@
 package com.exam.web;
 
 import com.exam.model.binding.MenuAddBindingModel;
-import com.exam.model.binding.RecipeAddBindingModel;
-import com.exam.model.entities.Product;
 import com.exam.model.entities.Recipe;
-import com.exam.model.entities.User;
 import com.exam.model.service.MenuServiceModel;
-import com.exam.model.service.RecipeServiceModel;
 import com.exam.service.MenuService;
 import com.exam.service.RecipeService;
 import com.exam.view.MenuViewModel;
@@ -15,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -59,8 +56,23 @@ public class MenuController {
     public String all(Model model){
         List<MenuViewModel> menus = menuService.getAllMenus();
         model.addAttribute("menus", menus);
-        model.addAttribute("imgUrl", menus.get(0).getRecipes().get(0).getImgUrl());
-        return "allMenus";
+
+        if(model.containsAttribute("imgUrl")) {
+            model.addAttribute("imgUrl", menus.get(0).getRecipes().get(0).getImgUrl());
+        }
+
+        return "all/allMenus";
+    }
+
+    @GetMapping("/details{id}")
+    public String details(@PathVariable("id") Long id, Model model){
+
+        MenuViewModel menuViewModel = menuService.findById(id);
+
+        model.addAttribute("menu", menuViewModel);
+        model.addAttribute("recipes", menuViewModel.getRecipes());
+
+        return "details/menu";
     }
 
     @PostMapping("/add")
@@ -101,5 +113,12 @@ public class MenuController {
 
         return "redirect:/";
 
+    }
+
+
+    @RequestMapping("/delete{id}")
+    private String delete(@PathVariable("id") Long id) {
+        menuService.deleteById(id);
+        return "redirect:all";
     }
 }

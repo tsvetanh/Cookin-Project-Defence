@@ -6,6 +6,7 @@
 //     index = (index == maxImages) ? 0 : ++index;
 //     // set your image using the curImageVar
 //     $('div.mystuff img').attr('src','images/'+curImage);
+
 let images = document.getElementsByName("img"),
     index = 0,
     maxImages = images.length - 1;

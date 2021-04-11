@@ -6,10 +6,9 @@
 </header>
 <body>
 <main>
-    <div name="img" th:each="recipe : ${recipes}" th:object="${recipe}">
-        <div th:href="@{/recipe/details{id}(id = *{id})}">
-            <img th:src="*{imgUrl}" alt="Recipe image" width="500" height="350">
-        </div>
+    <div class="homePictures" name="img" th:each="recipe : ${recipes}" th:object="${recipe}">
+        <p class="h2 text-center text-white" th:text="*{name}"></p>
+        <a th:href="@{/recipe/details{id}(id = *{id})}"><img th:src="*{imgUrl}"  alt="Recipe image" width="1100" height="700"></a>
     </div>
 </main>
 </body>

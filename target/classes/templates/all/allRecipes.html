@@ -6,7 +6,7 @@
 </header>
 <body>
     <div>
-        <ul class="recipesList ">
+        <ul class="recipesMenusList ">
             <li class="m-5 page-link "  th:each="recipe : ${recipes}" th:object="${recipe}">
                 <a th:href="@{/recipe/details{id}(id = *{id})}">
                     <img th:src="*{imgUrl}" alt="Recipe image"  width="500" height="350">

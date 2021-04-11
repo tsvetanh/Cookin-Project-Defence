@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -30,22 +31,27 @@
                 <a class="dropBtn text-white" href="/product/all" type="button">Products</a>
             </div>
             <th:block th:unless="${session.user == null}">
-                <div class="dropdown">
-                    <button class="dropBtn">Order</button>
-                    <div class="dropdown-content">
-                        <a href="/menu/order">Menu</a>
-                        <a href="/recipe/order">Dish</a>
-                        <a href="/product/order">Products</a>
-                    </div>
-                </div>
+<!--                <div class="dropdown">-->
+<!--                    <button class="dropBtn">Order</button>-->
+<!--                    <div class="dropdown-content">-->
+<!--                        <a href="/menu/order">Menu</a>-->
+<!--                        <a href="/recipe/order">Dish</a>-->
+<!--                        <a href="/product/order">Products</a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="dropdown">
                     <button class="dropBtn">Add</button>
                     <div class="dropdown-content">
                         <a href="/menu/add">Menu</a>
                         <a href="/recipe/add">Recipe</a>
+                        <a th:if="${#vars.session.user.hasRole('ADMIN')}" href="/product/add">Product</a>
                     </div>
                 </div>
             </th:block>
+
+            <div th:unless="${#vars.session.user} == null">
+            <div th:text="${#vars.session.user.getRoles().get(0).getRole()}"></div></div>
+
         </div>
 
         <ul class="navbar-nav">

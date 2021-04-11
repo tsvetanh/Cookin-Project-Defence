@@ -38,7 +38,7 @@ footer {
     height: 2.5rem;
 }
 
-.recipesList {
+.recipesMenusList {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 550px;
@@ -93,6 +93,10 @@ label {
     font-size: 20px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 .account {
     position: relative;
     display: inline-block;
@@ -132,4 +136,16 @@ a:link {
     /*columns: 2;*/
     /*-webkit-columns: 2;*/
     /*-moz-columns: 2;*/
+}
+
+.description{
+    font-size: 25px;
+}
+.descriptionTitle{
+    font-size: 28px;
+}
+
+.homePictures {
+    position: absolute;
+    left: 22%;
 }
